@@ -6,13 +6,14 @@ import axios from 'axios';
 import ArtistList from './../ArtistList/ArtistList.js';
 import { connect } from 'react-redux';
 import mapReduxStateToProps from '../../modules/mapReduxStateToProps';
+import { HashRouter as Router, Route, Link } from 'react-router-dom';
 
 class App extends Component {
   // Called when the (App) component is created
   state = {
     artists: [],
   }
-  
+
   // DOM is ready
   componentDidMount() { // react Component method
     this.refreshArtists();
@@ -34,16 +35,18 @@ class App extends Component {
 
   render() {
     return (
-      <div className="App">
-        <header className="App-header">
-          <h1 className="App-title">Famous Artists</h1>
-        </header>
-        <br/>
-        <ArtistList
-          refreshArtists={this.refreshArtists}
-          artistList={this.props.reduxState.artistReducer}
-        />
-      </div>
+      <Router>
+        <div className="App">
+          <header className="App-header">
+            <h1 className="App-title">Famous Artists</h1>
+          </header>
+          <br />
+          <ArtistList
+            refreshArtists={this.refreshArtists}
+            artistList={this.props.reduxState.artistReducer}
+          />
+        </div>
+      </Router>
     );
   }
 }
